@@ -1,0 +1,86 @@
+Name
+
+    EXT_swap_control_tear
+
+Name Strings
+
+    EGL_EXT_swap_control_tear
+
+Contact
+
+    Yves Auxier <yvesauxier@gmail.com>
+
+Status
+
+    Complete
+
+Version
+
+    Version 1, September 26, 2026
+
+Number
+
+    EGL Extension #156
+
+Dependencies
+    Requires EGL 1.1.
+
+    This extension is written against the wording of the EGL 1.1
+    specification.
+
+Overview
+
+    This extension allows a client to request that tearing be allowed on
+    its EGLSurface, if eglSwapInterval of the used platform does not allow
+    doing so when interval is set to 0.
+
+    This is necessary under platforms such as Wayland, where an
+    eglSwapInterval of 0 means mailbox vsync rather than tearing, and a
+    client has to request tearing through protocol extensions (such as the
+    tearing-control-v1 protocol).
+
+    Additionally, this can also allow tearing even if the EGLSurface's swap
+    interval is NOT 0, particularly useful for keeping minimum latency when
+    the surface's framerate is not a multiple of the display's refresh rate.
+
+    Setting this hint does not mean that a client will always tear; this is
+    platform policy, and can depend on factors outside of if the client has
+    requested it be allowed (such as hardware support, fullscreen state, etc.)
+
+New Types
+
+  None
+
+New Procedures and Functions
+
+    EGLBoolean eglRequestTearingEXT(EGLDisplay dpy,
+                                    EGLSurface surf,
+                                    EGLBoolean can_tear);
+
+Add the function:
+
+  EGLBoolean eglRequestTearingEXT(EGLDisplay dpy
+                                  EGLSurface surf,
+                                  EGLBoolean can_tear);
+
+    This function allows clients to specify that their surface can tear,
+    regardless of eglSwapInterval state.
+
+    EGLSurface can be EGL_NO_SURFACE, in which case, the EGLDisplay
+    should create any new EGLSurfaces with the tearing mode specified in
+    can_tear. Previously created EGLSurfaces under this EGLDisplay are not
+    affected, and the caller should call this function on those surfaces with
+    the surf argument set if they would like to set tearing modes for those
+    surfaces.
+
+    A value of EGL_TRUE for can_tear means that the client may tear if the
+    platform supports doing so for the surface. can_tear of EGL_FALSE means
+    that the platform behaviors with an eglSwapInterval of 0 are followed, if
+    set to 0, which may result in tearing. can_tear of EGL_FALSE does not change
+    policy if eglSwapInterval is not 0.
+
+    This function returns EGL_FALSE if this method is either not supported
+    for the current surface or otherwise failed to allow tearing, for example,
+    if the platform does not support extensions to control surface tearing
+    state. A return value of EGL_TRUE means that the surface has successfully
+    communicated a tearing hint.

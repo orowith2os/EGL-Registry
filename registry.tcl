@@ -803,4 +803,9 @@ extension EGL_EXT_device_type {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_type.txt
 }
-# Next free extension number: 156
+extension EGL_EXT_swap_control_tear {
+    number      156
+    flags       public
+    filename extensions/EXT/EGL_EXT_swap_control_tear.txt
+}
+# Next free extension number: 157
