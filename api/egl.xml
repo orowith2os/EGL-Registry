@@ -2085,6 +2085,12 @@
              <proto><ptype>EGLBoolean</ptype> <name>eglDestroyDisplayEXT</name></proto>
              <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
         </command>
+        <command>
+             <proto><ptype>EGLBoolean</ptype> <name>eglSwapTearingHintEXT</name></proto>
+             <param><ptype>EGLDisplay</ptype> <name>dpy</name></param>
+             <param><ptype>EGLSurface</ptype> <name>surf</name></param>
+             <param><ptype>EGLBoolean</ptype> <name>tearing_hint</name></param>
+        </command>
     </commands>
 
     <!-- SECTION: EGL API interface definitions. -->
@@ -3611,6 +3617,11 @@
                 <enum name="EGL_DEVICE_TYPE_INTEGRATED_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_DISCRETE_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_CPU_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_swap_tearing_hint" supported="egl">
+            <require>
+                <command name="eglSwapTearingHintEXT"></command>
             </require>
         </extension>
     </extensions>

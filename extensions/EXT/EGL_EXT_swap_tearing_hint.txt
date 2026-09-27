@@ -1,0 +1,73 @@
+Name
+
+    EXT_swap_control_tear
+
+Name Strings
+
+    EGL_EXT_swap_control_tear
+
+Contact
+
+    Yves Auxier <yvesauxier@gmail.com>
+
+Status
+
+    Complete
+
+Version
+
+    Version 1, September 26, 2026
+
+Number
+
+    EGL Extension #156
+
+Dependencies
+    Requires EGL 1.1.
+
+    This extension is written against the wording of the EGL 1.1
+    specification.
+
+Overview
+
+    This extension allows a client to hint that tearing be allowed on
+    its EGLSurface if eglSwapInterval of the used platform does not allow
+    doing so when interval is set to 0, and as an additional hint as to that
+    the client would prefer its surface to tear when possible, such as to
+    allow the lowest latency possible for its presented surface, even when
+    the requested eglSwapInterval is not 0.
+
+    Setting this hint does not mean that a client will always tear; this is
+    platform policy, and can depend on factors outside of if the client has
+    requested it be allowed (such as hardware support, fullscreen state,
+    protocol limitations or existence of certain extensions, etc.)
+
+New Types
+
+  None
+
+New Procedures and Functions
+
+    EGLBoolean eglSwapTearingHintEXT(EGLDisplay dpy,
+                                     EGLSurface surf,
+                                     EGLBoolean tearing_hint);
+
+Add the function:
+
+  EGLBoolean eglSwapTearingHintEXT(EGLDisplay dpy
+                                   EGLSurface surf,
+                                   EGLBoolean tearing_hint);
+
+    This function allows clients to specify that their EGLSurface can tear,
+    regardless of eglSwapInterval state.
+
+    A value of EGL_TRUE for tearing_hint means that the client may tear if the
+    platform supports doing so for the surface. tearing_hint of EGL_FALSE means
+    that the surface might not tear, but this is still platform policy, and can
+    depend on how the platform implements eglSwapInterval.
+
+    This function returns EGL_FALSE if this method is either not supported
+    for the current surface or otherwise failed to allow tearing, for example,
+    if the platform does not (at the current runtime) support extensions to
+    control their surface's tearing hint. A return value of EGL_TRUE means that
+    the surface has successfully communicated a tearing hint to the platform.
