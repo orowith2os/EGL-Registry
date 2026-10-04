@@ -107,6 +107,12 @@ New Behavior
     object with the surface, an acquire and a release point will be associated
     with the surface prior to the commit as well.
 
+    eglSwapInterval of 0 never means tearing, as to keep with Wayland client 
+    expectations (that they should request tearing explicitly), and that 
+    unsynchronized buffer swaps means mailbox vsync, rather than tearing.
+    A client wanting to request tearing should do so through other EGL
+    extensions.
+
 Issues
 
     1. Should this extension permit EGL_DEFAULT_DISPLAY as input to
