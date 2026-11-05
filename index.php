@@ -380,6 +380,8 @@ include_once("../../assets/static_pages/khr_page_top.php");
 </li>
 <li value=155> <a href="extensions/EXT/EGL_EXT_device_type.txt">EGL_EXT_device_type</a>
 </li>
+<li value="161" <a href="extensions/EXT/EGL_EXT_gl_colorspace_passthrough.txt">EGL_EXT_gl_colorspace_passthrough</a>
+</li>
 </ol>
 
 <h6> Providing Feedback on the Registry </h6>

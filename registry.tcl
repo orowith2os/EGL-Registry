@@ -804,4 +804,9 @@ extension EGL_EXT_device_type {
     flags       public
     filename    extensions/EXT/EGL_EXT_device_type.txt
 }
-# Next free extension number: 156
+extension EGL_EXT_gl_colorspace_passthrough {
+    number      161
+    flags       public
+    filename    extensions/EXT/EGL_EXT_gl_colorspace_passthrough.txt
+}
+# Next free extension number: 162

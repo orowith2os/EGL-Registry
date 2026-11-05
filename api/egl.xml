@@ -1108,6 +1108,11 @@
             <unused start="0x3595" end="0x359F"/>
     </enums>
 
+    <enums namespace="EGL" start="0x35A0" end="0x35AF" vendor="EXT" comment="Reserved for Yves Auxier (EGL-Registry pull #228, #233)">
+        <enum value="0x35A4" name="EGL_GL_COLORSPACE_PASSTHROUGH_EXT"/>
+            <unused start="0x35A5" end="0x35AF"/>
+    </enums>
+
 <!-- Please remember that new enumerant allocations must be obtained by
      request to the Khronos API registrar (see comments at the top of this
      file) File requests in the Khronos Bugzilla, EGL project, Registry
@@ -3611,6 +3616,11 @@
                 <enum name="EGL_DEVICE_TYPE_INTEGRATED_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_DISCRETE_GPU_EXT"/>
                 <enum name="EGL_DEVICE_TYPE_CPU_EXT"/>
+            </require>
+        </extension>
+        <extension name="EGL_EXT_gl_colorspace_passthrough" supported="egl">
+            <require>
+                <enum name="EGL_GL_COLORSPACE_PASSTHROUGH_EXT"/>
             </require>
         </extension>
     </extensions>
